@@ -6,8 +6,7 @@ const answerRoutes = require("./routes/answerRoute");
 const authMiddleware = require("./middleware/authMiddleware");
 const app = express();
 
-const port = 5500;
-
+const port = 3000;
 
 app.use(bodyparser.json()); //body json format
 app.use(bodyparser.urlencoded({ extended: true }));
@@ -22,9 +21,6 @@ app.get("/", (req, res) => {
   res.send("welcome");
 });
 
-
-
-  
 // creating tables middlewear install
 const installRoutes = require("./routes/installRoute");
 app.use("/", installRoutes);
@@ -35,11 +31,11 @@ app.use("/api/users", userRoutes);
 
 //question route middlewear
 const questionRoutes = require("./routes/questionRoute");
-app.use("/api",authMiddleware ,questionRoutes);
+app.use("/api", authMiddleware, questionRoutes);
 
 //Answer route middlewear
 
-app.use("/api",authMiddleware,answerRoutes);
+app.use("/api", authMiddleware, answerRoutes);
 
 // app.listen(port, () => console.log(`Listening to :${port}`));
 
